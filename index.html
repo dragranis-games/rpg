@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script>
+			function wczytaj_mape(){
+					$("#mapa").append("<table>");
+					for(var i=1;i<=15;i++){
+						$("#mapa").append("<tr>");
+						for(var j=1;j<=15;j++){
+							$("#mapa").append("<td class='pole' background='trawa.bmp'>");
+							$("#mapa").append("</td>");
+						}
+						$("#mapa").append("</tr>");
+					}
+					$("#mapa").append("</table>");
+			
+				zaladuj_gracza();
+			}
+			
+			function zaladuj_gracza(){
+				$("#mapa").append("<img src='mieso.png' id='gracz'/>");
+			}
+			
+			
+			
+			
+			window.addEventListener( "keydown", function (event){
+					var szerokosc = parseInt($("#gracz").css("left"));
+					var wysokosc= parseInt($("#gracz").css("top"));
+					console.log(szerokosc+" "+wysokosc);
+					switch(event.keyCode){
+						
+						case 37: //lewo
+						if(szerokosc>0)	$("#gracz").css("left","-=40");
+							
+						break;
+						
+						case 38: //góra
+						if(wysokosc>0)	$("#gracz").css("top","-=40");
+							
+						break;
+						
+						case 39: //prawo
+						if(szerokosc<560)	$("#gracz").css("left","+=40");
+							
+						break;
+						
+						case 40: //dół
+						if(wysokosc<560)	$("#gracz").css("top","+=40");
+				
+						break;
+					
+					}
+
+				}
+			)
+
+		</script>
+		
+		<style>
+			#mapa{
+				position:relative;
+				width: 50%;
+				height: 80%;
+				top: 20%;
+				left:20%;
+				float: left;
+				border: 1px black solid;
+			}
+			.pole{
+				width:40px;
+				height:40px;
+				z-index:0;
+				
+			}
+			#gracz{
+				width:40px;
+				height:40px;
+				z-index: 1;
+				top:0px;
+				left:0px;
+				position: absolute;
+			}
+		</style>
+	</head>
+<body onload="wczytaj_mape()">
+
+	<div id="mapa">
+	
+	</div>
+
+</body>
+</html>
